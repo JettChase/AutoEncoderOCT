@@ -5,9 +5,10 @@ class EncodedClassifier(nn.Module):
     def __init__(self, latent_dim, num_classes):
         super().__init__()
         self.classifier = nn.Sequential(
-            nn.Linear(latent_dim, 256),
+            nn.Linear(latent_dim, 64),
             nn.ReLU(),
-            nn.Linear(256, num_classes)
+            nn.Dropout(p=0.3),
+            nn.Linear(64, num_classes)
         )
         
     def forward(self, x):
@@ -20,9 +21,10 @@ class ControlClassifier(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
         self.classifier = nn.Sequential(
-            nn.Linear(224*224, 256),
+            nn.Linear(224*224, 64),
             nn.ReLU(),
-            nn.Linear(256, num_classes)
+            nn.Dropout(p=0.3),
+            nn.Linear(64, num_classes)
         )
         
     def forward(self, x):
