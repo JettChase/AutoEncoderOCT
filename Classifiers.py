@@ -1,7 +1,7 @@
 import torch.nn as nn
 
 #encoded images as input
-class EncodedClassifier(nn.Module):
+class PretrainedClassifier(nn.Module):
     def __init__(self, latent_dim, num_classes):
         super().__init__()
         self.classifier = nn.Sequential(
@@ -17,7 +17,7 @@ class EncodedClassifier(nn.Module):
     
     
 #control classifier uses images as input
-class ControlClassifier(nn.Module):
+class NaiveClassifier(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
         self.classifier = nn.Sequential(
